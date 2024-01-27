@@ -1,0 +1,10 @@
+<p>content-card works!</p>
+
+<div>
+    <h2>Content List:</h2>
+
+<div *ngFor="let data of firstInstance.cgArray; let i= index">
+<div [innerHTML]="firstInstance.HTMLoutput(i)" ></div>
+<!-- sanitizeHtml -->
+</div>
+  </div>
