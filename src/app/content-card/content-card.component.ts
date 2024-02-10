@@ -15,6 +15,7 @@ export class ContentCardComponent implements OnInit{
 
   @Input() contentItem: Content | undefined;
   @Input() isFirst: boolean | undefined;
+  @Input() even: boolean | undefined;
 constructor(){
 
 }

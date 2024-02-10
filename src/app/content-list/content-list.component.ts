@@ -2,11 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ContentCardComponent } from '../content-card/content-card.component';
 import { Content } from '../helper-files/content-interface'
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import {FilterTypePipe} from '../filter-type.pipe';
 
 @Component({
   selector: 'app-content-list',
   standalone: true,
-  imports: [ContentCardComponent, CommonModule],
+  imports: [ContentCardComponent, CommonModule, FormsModule, FilterTypePipe],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss'
 })
@@ -20,6 +22,7 @@ export class ContentListComponent implements OnInit{
       creator: 'Brendan Eich',
       imgURL:   'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/900px-JavaScript-logo.png',
       tags: ["tag1", "tag2", "tag3"],
+      type: 'Dynamic'
     },
   {
     id: 2,
@@ -28,6 +31,7 @@ export class ContentListComponent implements OnInit{
     creator: 'Guido van Rossum',
     imgURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png',
     tags: ["tag1", "tag2", "tag3"],
+    type: 'Dynamic'
   },
   {
     id: 3,
@@ -36,6 +40,7 @@ export class ContentListComponent implements OnInit{
   creator: 'James Gosling',
   imgURL: 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/181_Java_logo_logos-512.png',
   tags: ["tag1", "tag2", "tag3"],
+  type: 'Static'
   },
   {
     id: 4,
@@ -44,6 +49,7 @@ export class ContentListComponent implements OnInit{
     creator: 'Bjarne Stroustrup'   ,
     imgURL: 'https://assets-global.website-files.com/6047a9e35e5dc54ac86ddd90/63065002ce321b529d375e07_2e261bcd.png', 
     tags: ["tag1", "tag2", "tag3"],
+    type: 'Static'
   },
   {
     id: 5,
@@ -52,6 +58,7 @@ export class ContentListComponent implements OnInit{
   creator: 'Microsoft Corporation',
   imgURL: 'https://cdn.worldvectorlogo.com/logos/c--4.svg',
   tags: ["tag1", "tag2", "tag3"],
+  type: 'Static'
   },
   {
     id: 6,
@@ -60,12 +67,35 @@ export class ContentListComponent implements OnInit{
   creator: 'JetBrains',
   imgURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin_Icon.png/1200px-Kotlin_Icon.png ',
   tags: ["tag1", "tag2", "tag3"],
+  // type: 'Static'
+  },
+  {
+    id: 7,
+    title: "Swift",
+    description: "Swift is a modern, open-source programming language developed by Apple. It is designed for iOS, macOS, watchOS, and tvOS development. Swift offers a clean syntax, type safety, and powerful features such as optionals, generics, and closures.",
+    creator: "Apple",
+    imgURL: "https://developer.apple.com/swift/images/swift-og.png",
+    tags: ["tag1", "tag2", "tag3"],
+    type: 'Static'
   }
 ];
+
+typeExist: boolean = false;
+filteredArray: Content[] = [];
+searchHeading: string = '';
+searchMessage: string = '';
+
+checkingTitle(){
+//selection                  =  (is equal to)    this
+  this.filteredArray = this.ContentItems.filter(item => item.title.toLowerCase() === this.searchHeading.toLowerCase());
+  this.typeExist = this.filteredArray.length > 0;
+  this.searchMessage = this.typeExist ?  ` '${this.searchHeading}' title exist in our database and it has been highlighted in the below list.` : `'${this.searchHeading}' title  does not exist in our database.` ;
+}
  constructor() {
   
 }
 ngOnInit(){
 
 };
+
 }

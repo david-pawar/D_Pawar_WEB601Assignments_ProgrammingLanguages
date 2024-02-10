@@ -1,8 +1,44 @@
-
-   <div>
-    <h1 class="text-4xl font-bold text-center pb-3 pt-3">Content List</h1>
-    <div *ngFor="let contentItem of ContentItems.slice(0, 5); let isFirst = first">
-      <app-content-card [contentItem]="contentItem" [isFirst]="isFirst"></app-content-card>
+<!-- 
+    <div>
+    <h1 class="text-4xl font-bold text-center pb-3 pt-3 bg-red-200">Content List</h1>
+    <div *ngFor="let contentItem of ContentItems.slice(0, 7); let isFirst = first; let even = even" >
+      <app-content-card [contentItem]="contentItem" [isFirst]="isFirst" [even]="even"></app-content-card>
     </div>
+  </div>  -->
+
+  <div class="inputType flex items-center justify-center flex-col">
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 m-4" placeholder="Enter Type" type="text" name="searchHeading" [(ngModel)]="searchHeading">
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-3  rounded"  (click)="checkingTitle()">Search</button>
+</div>
+
+<p class="message" [style.color]="typeExist ? 'green' : 'red'">
+  {{ searchMessage }}
+</p>
+
+
+
+<div *ngFor="let content of ContentItems | filterType:'Dynamic'; let i = index" [ngClass]="{ 'bg-green-500': content.title.toLowerCase() === searchHeading.toLowerCase(), 'bg-blue-200': content.title.toLowerCase() !== searchHeading.toLowerCase()}" class="text-white">
+  <app-content-card [contentItem]="content"></app-content-card>
+</div>
+<div *ngFor="let content of ContentItems | filterType:'Static'; let i = index" [ngClass]="{ 'bg-green-500': content.title.toLowerCase() === searchHeading.toLowerCase(), 'bg-blue-200': content.title.toLowerCase() !== searchHeading.toLowerCase()}" class="text-white">
+  <app-content-card [contentItem]="content"></app-content-card>
+</div>
+<div *ngFor="let content of ContentItems | filterType:''; let i = index" [ngClass]="{ 'bg-green-500': content.title.toLowerCase() === searchHeading.toLowerCase(), 'bg-blue-200': content.title.toLowerCase() !== searchHeading.toLowerCase()}" class="text-white">
+  <app-content-card [contentItem]="content"></app-content-card>
+</div>
+
+
+<!-- <div class="container ">
+  <div class="none-type">
+    <p class="text-2xl font-bold text-center pb-3 pt-3 bg-red-200">No Type</p>
+  <app-content-card *ngFor="let anItem of ContentItems | filterType: '' "  [contentItem]="anItem"> </app-content-card>
   </div>
-  
+  <div class="static-type">
+    <p class="text-2xl font-bold text-center pb-3 pt-3 bg-red-200">Static Type</p>
+  <app-content-card *ngFor="let anItem of ContentItems | filterType: 'Static' "  [contentItem]="anItem"> </app-content-card>
+  </div>
+  <div class="dynamic-type">
+    <p class="text-2xl font-bold text-center pb-3 pt-3 bg-red-200">Dynamic Type</p>
+  <app-content-card *ngFor="let anItem of ContentItems | filterType: 'Dynamic' "  [contentItem]="anItem"> </app-content-card>
+  </div>
+</div> -->
