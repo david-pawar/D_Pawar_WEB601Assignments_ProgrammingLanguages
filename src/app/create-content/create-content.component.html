@@ -1,0 +1,13 @@
+<!-- <p>create-content works!</p> -->
+<div>
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" [(ngModel)]="content.id" placeholder="ID"><br>
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" [(ngModel)]="content.title" placeholder="Title"><br>
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" [(ngModel)]="content.description" placeholder="Description"><br>
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" [(ngModel)]="content.creator" placeholder="Creator"><br>
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" [(ngModel)]="content.imgURL" placeholder="Image URL"><br>
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" [(ngModel)]="content.type" placeholder="Type"><br>
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" [(ngModel)]="tagInput" placeholder="Tags"><br>
+    <!-- sends a new content item to our list -->
+    <button (click)="addingContent()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-3  rounded">Submit</button>
+    
+    <p *ngIf="errorMessage" style="color: red; font-weight: bold;"> {{ errorMessage }}  </p>

@@ -1,0 +1,20 @@
+<!-- <p>content-card works!</p> -->
+<div [ngClass]="{'border-2 border-solid border-black mb-3 bg-blue-100': isFirst}" [ngClass]="{'bg-red-100':even}">
+  <h1 class="border-solid border-2 border-black text-4xl font-bold text-center pb-3 pt-3 text-black "> Title: {{ contentItem?.title }}</h1>
+  <p class="content-card-tag text-black"> <b>Description:</b> {{ contentItem?.description }}</p>
+  <p class="content-card-tag text-black"><b>Creator:</b> {{ contentItem?.creator }}</p>
+  <!-- <p class="content-card-tag text-black"><b>Type:</b> {{ contentItem?.type }}</p> -->
+
+  <p appHoverAffect typeStyle="textDecoration" class="text-black content-card-tag"><b>Type:</b> {{ contentItem?.type }}</p>
+  <!-- <img class="imgs mb-7" [src]="contentItem?.imgURL" alt="{{ contentItem?.title }}" (click)="logContentItem(contentItem)"> -->
+  <img class="img h-32 w-32 mx-auto" *ngIf="contentItem?.imgURL; else defaultImage" [src]="contentItem?.imgURL" (click)="errorImg()"/>
+  <div class="text-black">Tags: 
+    <div class="list text-black " *ngFor="let tag of contentItem?.tags" appHoverAffect tagStyle="fontWeight">
+      {{tag}}
+    </div>
+  </div>
+  <ng-template #defaultImage>
+    <img class="default-img h-32 w-32 mx-auto" src="https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg"  />
+  </ng-template>
+</div>
+

@@ -5,9 +5,9 @@
       <app-content-card [contentItem]="contentItem" [isFirst]="isFirst" [even]="even"></app-content-card>
     </div>
   </div>  -->
-
+<app-create-content (contentAdded)="submissionOperation($event)"></app-create-content>
   <div class="inputType flex items-center justify-center flex-col">
-    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 m-4" placeholder="Enter Type" type="text" name="searchHeading" [(ngModel)]="searchHeading">
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 m-4" placeholder="Enter Type to search" type="text" name="searchHeading" [(ngModel)]="searchHeading">
     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-3  rounded"  (click)="checkingTitle()">Search</button>
 </div>
 

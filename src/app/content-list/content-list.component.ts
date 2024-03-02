@@ -4,11 +4,12 @@ import { Content } from '../helper-files/content-interface'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {FilterTypePipe} from '../filter-type.pipe';
+import { CreateContentComponent } from '../create-content/create-content.component';
 
 @Component({
   selector: 'app-content-list',
   standalone: true,
-  imports: [ContentCardComponent, CommonModule, FormsModule, FilterTypePipe],
+  imports: [ContentCardComponent, CommonModule, FormsModule, FilterTypePipe, CreateContentComponent],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss'
 })
@@ -38,7 +39,7 @@ export class ContentListComponent implements OnInit{
   title: 'Java',
   description: 'Java is a versatile, object-oriented programming language that is designed to be platform-independent. It is widely used for building enterprise-level applications, mobile applications (Android), and large-scale systems.',
   creator: 'James Gosling',
-  imgURL: 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/181_Java_logo_logos-512.png',
+  // imgURL: 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/181_Java_logo_logos-512.png',
   tags: ["tag1", "tag2", "tag3"],
   type: 'Static'
   },
@@ -82,7 +83,7 @@ export class ContentListComponent implements OnInit{
 
 typeExist: boolean = false;
 filteredArray: Content[] = [];
-searchHeading: string = '';
+searchHeading: string = ' ';
 searchMessage: string = '';
 
 checkingTitle(){
@@ -91,6 +92,21 @@ checkingTitle(){
   this.typeExist = this.filteredArray.length > 0;
   this.searchMessage = this.typeExist ?  ` '${this.searchHeading}' title exist in our database and it has been highlighted in the below list.` : `'${this.searchHeading}' title  does not exist in our database.` ;
 }
+
+submissionOperation(newContent: Content) {
+  newContent.id = Number(newContent.id);
+  //Not working - this.contentArray.push(newContent);
+  
+  //Creates a new array by taking the existing contentArray into a new one
+  //Then it appends the newContent object to the new array
+  this.ContentItems = [...this.ContentItems, newContent];
+
+  //Debug
+  console.log(this.ContentItems)
+
+  console.log("Operation to add new content is successfully done: ", newContent.title)
+}
+
  constructor() {
   
 }
